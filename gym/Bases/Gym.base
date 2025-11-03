@@ -1,0 +1,102 @@
+filters:
+  and:
+    - file.inFolder("gym/Log")
+    - file.ext == "md"
+formulas:
+  volume: weight * reps * sets
+  total_sets: sets
+  intensity_score: (effort / 5) * (weight * reps)
+  days_since_exercise: floor((now() - exercise-date) / (1000 * 60 * 60 * 24))
+properties:
+  exercise-name:
+    displayName: Exercise
+  exercise-date:
+    displayName: Date
+  muscle-group:
+    displayName: Muscle Group
+  weight:
+    displayName: Weight (lbs)
+  reps:
+    displayName: Reps
+  sets:
+    displayName: Sets
+  effort:
+    displayName: Effort (1-5)
+  duration:
+    displayName: Duration (min)
+  workout-type:
+    displayName: Type
+  notes:
+    displayName: Notes
+views:
+  - type: table
+    name: Today's Workout
+    filters:
+      and:
+        - exercise-date == today()
+    order:
+      - exercise-name
+      - muscle-group
+      - weight
+      - reps
+      - sets
+      - effort
+  - type: table
+    name: All Exercises
+    order:
+      - exercise-date
+      - exercise-name
+      - muscle-group
+      - weight
+      - reps
+      - sets
+  - type: table
+    name: By Muscle Group
+    order:
+      - muscle-group
+      - exercise-date
+      - exercise-name
+      - weight
+      - reps
+      - sets
+  - type: table
+    name: By Exercise Type
+    order:
+      - exercise-name
+      - exercise-date
+      - weight
+      - reps
+      - sets
+      - effort
+  - type: table
+    name: Recent 30 Days
+    filters:
+      and:
+        - exercise-date > today() - "30d"
+    order:
+      - exercise-date
+      - exercise-name
+      - muscle-group
+      - weight
+  - type: table
+    name: Personal Records
+    filters:
+      and:
+        - effort >= 4
+    order:
+      - muscle-group
+      - exercise-name
+      - weight
+      - exercise-date
+  - type: table
+    name: This Week
+    filters:
+      and:
+        - exercise-date >= today() - "7d"
+    order:
+      - exercise-date
+      - exercise-name
+      - muscle-group
+      - sets
+      - reps
+      - weight
