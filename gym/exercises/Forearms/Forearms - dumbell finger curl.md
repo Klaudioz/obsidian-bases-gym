@@ -1,17 +1,17 @@
 ---
-id: 945619
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
+exercise-name: Forearms - dumbell finger curl
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Forearms
+weight: <% await tp.system.prompt("Weight (lbs)", "", true) %>
 reps: <% await tp.system.prompt("Reps", "20", true) %>
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Forearms - dumbell finger curl
-muscle_group: Forearms
+workout-type: Forearms
 equipment: Dumbbell
-note: <% await tp.system.prompt("Note", "", true) %>
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: 'yes'
 tags:
- - exercise
+  - exercise
 ---
 
 ```dataviewjs

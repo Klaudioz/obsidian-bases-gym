@@ -1,17 +1,17 @@
 ---
-id: 132702
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
+exercise-name: Neck - neck curl
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Neck
+weight: 0
 reps: <% await tp.system.prompt("Reps", "15", true) %>
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Neck - neck curl
-muscle_group: Neck
+workout-type: Neck
 equipment: Bodyweight
-note: <% await tp.system.prompt("Note", "", true) %>
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: 'do it'
 tags:
- - exercise
+  - exercise
 ---
 
 ```dataviewjs

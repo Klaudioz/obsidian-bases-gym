@@ -1,17 +1,17 @@
 ---
-id: 412067
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
+exercise-name: Triceps - dumbbell kickback
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Triceps
+weight: <% await tp.system.prompt("Weight (lbs)", "", true) %>
 reps: <% await tp.system.prompt("Reps", "8", true) %>
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Triceps - dumbbell kickback
-muscle_group: Triceps
+workout-type: Upper Body Push
 equipment: Dumbbell
-note: <% await tp.system.prompt("Note", "", true) %>
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: 'alternate arm'
 tags:
- - exercise
+  - exercise
 ---
 
 ```dataviewjs

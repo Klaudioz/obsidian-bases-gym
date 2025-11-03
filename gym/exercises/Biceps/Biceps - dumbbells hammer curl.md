@@ -1,14 +1,14 @@
 ---
-id: 278650
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
+exercise-name: Biceps - dumbbells hammer curl
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Biceps
+weight: <% await tp.system.prompt("Weight (lbs)", "", true) %>
 reps: <% await tp.system.prompt("Reps", "8", true) %>
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Biceps - dumbbells hammer curl
-muscle_group: Biceps
+workout-type: Upper Body Pull
 equipment: Pair of Dumbbells
-note: <% await tp.system.prompt("Note", "", true) %>
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: alternate or together, up to you.
 tags:
   - exercise

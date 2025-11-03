@@ -1,17 +1,17 @@
 ---
-id: 535529
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
+exercise-name: Forearms - farmer's walk
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Forearms
+weight: <% await tp.system.prompt("Weight (lbs)", "", true) %>
 reps: <% await tp.system.prompt("Reps", "30", true) %>
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Forearms - farmer's walk
-muscle_group: Forearms
+workout-type: Forearms
 equipment: Pair of Dumbbells
-note: <% await tp.system.prompt("Note", "", true) %>
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: 'walk like farmer'
 tags:
- - exercise
+  - exercise
 ---
 
 ```dataviewjs

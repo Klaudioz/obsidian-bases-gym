@@ -1,19 +1,18 @@
 ---
-id: 151534
-date: <% tp.date.now("YYYY-MM-DDTHH:mm:ss") %>
-time: <% tp.date.now("HH:mm:ss") %>
-timed: true
+exercise-name: Full Body - jogging
+exercise-date: <% tp.date.now("YYYY-MM-DD") %>
+muscle-group: Full Body
+weight: 0
+reps: 1
+sets: <% await tp.system.prompt("Sets", "3", true) %>
 duration: <% await tp.system.prompt("Duration (seconds)", "3600", true) %>
-weight: <% await tp.system.prompt("Weight", "", true) %>
 effort: <% await tp.system.suggester(["1 (easy)", "2", "3", "4", "5 (failure)"], ["1", "2", "3", "4", "5"]) %>
-exercise: Full Body - jogging
-muscle_group: Full Body
+workout-type: Full Body
 equipment: Bodyweight
-note: <% await tp.system.prompt("Note", "", true) %>
-video_url: "later on."
+notes: <% await tp.system.prompt("Notes", "", true) %>
 instructions: 'jogging.'
 tags:
- - exercise
+  - exercise
 ---
 
 ```dataviewjs

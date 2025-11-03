@@ -4,17 +4,22 @@ A lightweight gym tracking system built with Obsidian Bases. Track exercises, mo
 
 ## Features
 
-- **Native Obsidian Integration**: Uses Obsidian Bases (no plugin dependencies)
+- **⚡ Quick Logging**: Log workouts in ~30 seconds with Templater templates
+- **📚 Exercise Library**: 33 pre-configured exercises across 22 muscle groups with Templater integration
+- **Native Obsidian Integration**: Uses Obsidian Bases (minimal plugin dependencies)
 - **Simple Markdown Files**: All workout data stored as markdown with YAML frontmatter
 - **Automatic Calculations**: Formulas compute volume, intensity scores, and progress metrics
 - **Multiple Views**: See your data by date, muscle group, exercise type, and effort level
-- **Exercise Library**: 33+ exercise templates organized by 22 muscle groups
 - **Workout Routines**: Pre-built routine guides for structured training
 
 ## Prerequisites
 
 - Obsidian v1.10.0 or later (required for Bases feature)
 - A local Obsidian vault
+- **Templater plugin** (recommended for quick workout logging)
+  - Install from Community Plugins: Settings → Community plugins → Browse → Search "Templater"
+  - Enables the Quick Log workflow (~30 seconds per workout)
+  - Optional: Manual logging works without it, but takes longer (~2 minutes)
 
 ## Installation
 
@@ -98,6 +103,31 @@ Open `gym/Gym Dashboard.md` to see:
 > **Note**: Date filtering (Today, This Week, etc.) is not supported in dashboard inline queries. For date-filtered views, open the **Gym** base directly from Obsidian's Bases section in the sidebar.
 
 ### Log Your First Workout
+
+**Method 1: Quick Log with Templater (Recommended - ~30 seconds)**
+
+1. Ensure Templater plugin is installed (Community Plugins → Templater)
+2. Open command palette (Ctrl/Cmd + P)
+3. Type: "Templater: Create new note from template"
+4. Select: `gym/Templates/Workout Log.md`
+5. Fill in the prompts:
+   - **Select muscle group** (21 options)
+   - **Select exercise** (shows only exercises for that muscle group)
+   - **Enter workout details**: weight, reps, sets, effort, notes
+6. Done! File automatically renamed and saved to `gym/Log/`
+7. Workout appears in the dashboard immediately
+
+**Method 2: Use Exercise Templates as Reference**
+
+All 33 exercises in `gym/exercises/` have standardized frontmatter. Use them as reference:
+
+1. Browse `gym/exercises/[MuscleGroup]/` to find your exercise
+2. Open the template to see correct exercise name, muscle group, equipment
+3. Create a new file in `gym/Log/` with format: `YYYY-MM-DD ExerciseName.md`
+4. Copy the frontmatter structure from the template
+5. Fill in your actual values (weight, reps, sets, effort, notes)
+
+**Method 3: Manual Creation (Slower - ~2 minutes)**
 
 1. Navigate to the `gym/Log/` folder
 2. Create a new markdown file: `YYYY-MM-DD ExerciseName.md`

@@ -4,19 +4,11 @@ A lightweight workout tracking system for [Obsidian](https://obsidian.md/), buil
 
 ## Features
 
-- Native Obsidian Bases integration (no plugin dependencies)
-- Simple markdown files with YAML frontmatter
-- Automatic calculations for volume, intensity scores, progress metrics
-- Multiple views by date, muscle group, exercise type, effort level
-- Exercise library with 33+ templates across 22 muscle groups
-- Pre-built workout routine guides
-- Data visualization with effort and volume metrics
-- Progress tracking with chronological logs
+Native Obsidian Bases integration with minimal plugin dependencies. Simple markdown files with YAML frontmatter. Automatic calculations for volume, intensity scores, and progress metrics. Multiple views by date, muscle group, exercise type, and effort level. Exercise library with 33 templates across 22 muscle groups. Pre-built workout routine guides. Data visualization with effort and volume metrics. Progress tracking with chronological logs. Quick logging workflow with Templater plugin.
 
 ## Prerequisites
 
-- Obsidian v1.10.0 or later (required for Bases feature)
-- A local Obsidian vault
+Obsidian v1.10.0 or later (required for Bases feature). A local Obsidian vault. Templater plugin recommended for quick workout logging (enables 30-second logging workflow; manual logging works without it but takes longer).
 
 ## Installation
 
@@ -54,6 +46,7 @@ YourVault/
 │   ├── Bases/
 │   │   └── Gym.base              ← Copy for GitHub, but Obsidian uses /Bases/Gym.base
 │   ├── Log/                      ← Your workout logs go here
+│   ├── Templates/                ← Templater templates for quick logging
 │   ├── exercises/                ← Exercise templates (reference)
 │   ├── routines/                 ← Workout planning guides
 │   ├── Gym Dashboard.md          ← Open this to view your data
@@ -80,20 +73,31 @@ YourVault/
 
 ### View Your Dashboard
 
-Open `gym/Gym Dashboard.md` to see:
-- Recent Workouts: All logged workouts sorted by date
-- High Effort Training: Workouts with effort level 4-5
-- Exercises by Muscle Group: All workouts organized by muscle
-- All Exercise History: Complete chronological log
+Open `gym/Gym Dashboard.md` to see: Recent Workouts (all logged workouts sorted by date), High Effort Training (workouts with effort level 4-5), Exercises by Muscle Group (all workouts organized by muscle), and All Exercise History (complete chronological log).
 
 Note: Date filtering (Today, This Week, etc.) is not supported in dashboard inline queries. For date-filtered views, open the Gym base directly from Obsidian's Bases section in the sidebar.
 
 ### Log Your First Workout
 
-1. Navigate to the `gym/Log/` folder
-2. Create a new markdown file: `YYYY-MM-DD ExerciseName.md`
-   - Example: `2025-10-30 Deadlift.md`
-3. Add this YAML frontmatter:
+**Method 1: Quick Log with Templater (Recommended, ~30 seconds)**
+
+1. Ensure Templater plugin is installed (Community Plugins → Templater)
+2. Open command palette (Ctrl/Cmd + P)
+3. Type: "Templater: Create new note from template"
+4. Select: `gym/Templates/Workout Log.md`
+5. Fill in prompts: select muscle group, select exercise, enter workout details (weight, reps, sets, effort, notes)
+6. File automatically renamed and saved to `gym/Log/`
+7. Workout appears in dashboard immediately
+
+**Method 2: Use Exercise Templates as Reference**
+
+Browse `gym/exercises/[MuscleGroup]/` to find your exercise. Open the template to see correct exercise name, muscle group, and equipment. Create a new file in `gym/Log/` with format: `YYYY-MM-DD ExerciseName.md`. Copy the frontmatter structure from the template and fill in your actual values.
+
+**Method 3: Manual Creation (~2 minutes)**
+
+1. Navigate to `gym/Log/` folder
+2. Create new markdown file: `YYYY-MM-DD ExerciseName.md` (e.g., `2025-10-30 Deadlift.md`)
+3. Add YAML frontmatter:
 
 ```yaml
 ---
@@ -113,9 +117,8 @@ notes: "Strong pulls, good form throughout"
 Great session today. Form felt solid on all sets.
 ```
 
-4. Save the file
-5. Reload the dashboard (Ctrl/Cmd + R)
-6. Your workout appears in all relevant views
+4. Save the file and reload dashboard (Ctrl/Cmd + R)
+5. Workout appears in all relevant views
 
 ### Find Exercise Names
 
@@ -128,13 +131,7 @@ The Gym base file includes date-filtered views. To access them:
 1. Open Obsidian
 2. Look in the left sidebar for the Bases section (or search for "Gym")
 3. Click on Gym base
-4. You'll see these views with working date filters:
-   - Today's Workout: Exercises from today only
-   - This Week: Last 7 days of training
-   - Recent 30 Days: Last month's workouts
-   - Personal Records: High-effort sessions (4-5)
-   - All Exercises: Complete history
-   - By Muscle Group: Organized by muscle
+4. You'll see these views with working date filters: Today's Workout (exercises from today only), This Week (last 7 days of training), Recent 30 Days (last month's workouts), Personal Records (high-effort sessions 4-5), All Exercises (complete history), and By Muscle Group (organized by muscle).
 
 Why the difference? Obsidian Bases support date filtering (`today()`, date arithmetic) in `.base` files, but these functions don't work in inline dashboard queries. The dashboard shows all workouts and filtered views, while the base file provides date-specific filtering.
 
@@ -156,14 +153,7 @@ Every workout log uses these properties:
 
 ## Automatic Formulas
 
-The system calculates these metrics automatically:
-
-- **volume** = weight × reps × sets (total mechanical work)
-- **intensity_score** = (effort / 5) × (weight × reps) (effort-weighted metric)
-- **days_since_exercise** = days elapsed since the exercise
-- **total_sets** = number of sets completed
-
-These appear in dashboard views and can be used for filtering and sorting.
+The system calculates these metrics automatically: **volume** = weight × reps × sets (total mechanical work), **intensity_score** = (effort / 5) × (weight × reps) (effort-weighted metric), **days_since_exercise** = days elapsed since the exercise, and **total_sets** = number of sets completed. These appear in dashboard views and can be used for filtering and sorting.
 
 ## Using the Exercise Library
 
@@ -175,14 +165,7 @@ These templates are for reference. Use them to find correct exercise names and s
 
 ## Workout Routines
 
-The `routines/` folder contains comprehensive guides:
-
-- Training Splits.md: 5 different training split approaches
-- Upper Body Push.md: Structured push day routines
-- Lower Body.md: Leg day programming
-- Pull Day.md: Pull/back day routines
-
-Review these to plan your training structure.
+The `routines/` folder contains comprehensive guides: Training Splits.md (5 different training split approaches), Upper Body Push.md (structured push day routines), Lower Body.md (leg day programming), and Pull Day.md (pull/back day routines). Review these to plan your training structure.
 
 ## Troubleshooting
 
@@ -192,53 +175,29 @@ Most Common Cause: Gym.base file is not in the correct location.
 
 Solutions:
 
-1. Verify Gym.base location (MOST IMPORTANT):
-   - `Gym.base` MUST be at `/Bases/Gym.base` (vault root, not in gym/ folder)
-   - Obsidian ignores `.base` files in subfolders
-   - If you only copied the gym/ folder, you missed this step
-   - Copy `gym/Bases/Gym.base` → `YourVault/Bases/Gym.base`
+1. Verify Gym.base location (MOST IMPORTANT): `Gym.base` MUST be at `/Bases/Gym.base` (vault root, not in gym/ folder). Obsidian ignores `.base` files in subfolders. If you only copied the gym/ folder, you missed this step. Copy `gym/Bases/Gym.base` → `YourVault/Bases/Gym.base`.
 
-2. Verify folder locations:
-   - Workout logs must be in `gym/Log/` folder
-   - The folder MUST be named `gym/` exactly
-   - Check by looking at your vault's file tree in Obsidian
+2. Verify folder locations: Workout logs must be in `gym/Log/` folder. The folder MUST be named `gym/` exactly. Check by looking at your vault's file tree in Obsidian.
 
-3. Check Obsidian version:
-   - Bases requires v1.10.0 or later
-   - Go to Settings → About to check version
-   - Update via Help → Check for updates if needed
+3. Check Obsidian version: Bases requires v1.10.0 or later. Go to Settings → About to check version. Update via Help → Check for updates if needed.
 
-4. Reload Obsidian:
-   - Close and reopen Obsidian completely
-   - Or use Ctrl/Cmd + R to reload
-   - Bases views sometimes need a refresh
+4. Reload Obsidian: Close and reopen Obsidian completely, or use Ctrl/Cmd + R to reload. Bases views sometimes need a refresh.
 
-5. Verify YAML format:
-   - Frontmatter must start and end with `---`
-   - Property names must match exactly: `exercise-name`, `exercise-date`, `muscle-group`
-   - Numbers should NOT have quotes: `weight: 225` (correct) vs `weight: "225"` (wrong)
+5. Verify YAML format: Frontmatter must start and end with `---`. Property names must match exactly: `exercise-name`, `exercise-date`, `muscle-group`. Numbers should NOT have quotes: `weight: 225` (correct) vs `weight: "225"` (wrong).
 
-6. Check file names:
-   - All workout logs must be `.md` files
-   - Must be in the `gym/Log/` folder
+6. Check file names: All workout logs must be `.md` files. Must be in the `gym/Log/` folder.
 
 ### Properties Not Showing
 
-- Verify property names use hyphens: `exercise-name` not `exercise_name` or `exerciseName`
-- Property names are case-sensitive
-- Ensure YAML frontmatter is properly formatted
+Verify property names use hyphens: `exercise-name` not `exercise_name` or `exerciseName`. Property names are case-sensitive. Ensure YAML frontmatter is properly formatted.
 
 ### Formulas Not Calculating
 
-- All required properties must have values (weight, reps, sets, effort)
-- Numbers must not have quotes
-- Check that formulas are defined in `Gym.base`
+All required properties must have values (weight, reps, sets, effort). Numbers must not have quotes. Check that formulas are defined in `Gym.base`.
 
 ### Dates Not Working
 
-- Use YYYY-MM-DD format only
-- Example: `2025-10-30` (correct)
-- NOT: `10/30/2025` or `10-30-2025` (wrong)
+Use YYYY-MM-DD format only. Example: `2025-10-30` (correct). NOT: `10/30/2025` or `10-30-2025` (wrong).
 
 ### Still Not Working?
 
@@ -308,27 +267,15 @@ See [Obsidian Bases documentation](https://help.obsidian.md/Bases/Introduction+t
 
 ## Tips & Best Practices
 
-- Consistent naming: Use `YYYY-MM-DD ExerciseName.md` format for chronological sorting
-- Log immediately: Record details right after workouts while fresh
-- Use effort levels: The 1-5 scale helps identify your hardest sessions
-- Add notes: Observations about form, fatigue, and mood are valuable
-- Review weekly: Check dashboard trends to identify patterns
-- Update routines: Keep routine templates synced with your current plan
+Consistent naming: Use `YYYY-MM-DD ExerciseName.md` format for chronological sorting. Log immediately: Record details right after workouts while fresh. Use effort levels: The 1-5 scale helps identify your hardest sessions. Add notes: Observations about form, fatigue, and mood are valuable. Review weekly: Check dashboard trends to identify patterns. Update routines: Keep routine templates synced with your current plan.
 
 ## Exporting Data
 
-All data is stored as markdown files:
-- Copy files to backup
-- Commit to Git for version history
-- Export to CSV using Obsidian tools
-- Process with external scripts
-- Share individual workout logs easily
+All data is stored as markdown files. Copy files to backup, commit to Git for version history, export to CSV using Obsidian tools, process with external scripts, or share individual workout logs easily.
 
 ## Support & Resources
 
-- Obsidian Bases Help: https://help.obsidian.md/Bases/Introduction+to+Bases
-- Obsidian Forum: https://forum.obsidian.md
-- Report Issues: Create an issue in this repository
+Obsidian Bases Help: https://help.obsidian.md/Bases/Introduction+to+Bases. Obsidian Forum: https://forum.obsidian.md. Report Issues: Create an issue in this repository.
 
 ## Contributing
 

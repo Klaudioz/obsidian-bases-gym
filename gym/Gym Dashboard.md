@@ -1,5 +1,24 @@
+# Gym Tracker Dashboard
 
 Your complete workout tracking and performance overview.
+
+---
+
+## ⚡ Quick Log Workout
+
+**Log a workout in 30 seconds with Templater:**
+1. Cmd/Ctrl + P → "Templater: Create new note from template"
+2. Select: `gym/Templates/Workout Log.md`
+3. Fill in prompts:
+   - **Select muscle group** (21 options)
+   - **Select exercise** (shows only exercises for that muscle group)
+   - **Enter workout details**: weight, reps, sets, effort, notes
+4. Done! File automatically renamed and saved to `gym/Log/`
+5. Workout appears in dashboard immediately
+
+**Exercise Library:** Browse 33 exercises in `gym/exercises/` organized by 22 muscle groups for reference.
+
+**For date-filtered views** (Today's Workout, This Week, Recent 30 Days), open the **Gym** base from the Bases section in your sidebar.
 
 ---
 
